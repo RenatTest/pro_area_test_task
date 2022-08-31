@@ -8,7 +8,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(CatAdapter());
   box = await Hive.openBox('box');
-  box.put('cat', Cat(id: 1, name: 'CatName', phone: 'Cat Phone 33333'));
+  // box.put('cat', Cat(id: 1, name: 'CatName', phone: 'Cat Phone 33333'));
   runApp(MyApp());
 }
 
