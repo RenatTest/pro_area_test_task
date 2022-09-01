@@ -19,6 +19,7 @@ class _FactHistoryState extends State<FactHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyan,
         centerTitle: true,
         title: Text('Fact History'),
       ),
