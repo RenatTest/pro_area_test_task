@@ -2,11 +2,25 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pro_area_test_task/cubit/cat_cubit.dart';
 import 'package:pro_area_test_task/cubit/cat_state.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class CatList extends StatelessWidget {
+class CatList extends StatefulWidget {
+  @override
+  _CatListState createState() => _CatListState();
+}
+
+class _CatListState extends State<CatList> {
+  Box<String> catBox;
+
+  @override
+  void initState() {
+    super.initState();
+    catBox = Hive.box<String>('cats');
+  }
+
   @override
   Widget build(BuildContext context) {
     // ignore: deprecated_member_use
@@ -28,6 +42,9 @@ class CatList extends StatelessWidget {
               itemCount: state.loadedCat.length,
               itemBuilder: (context, index) {
                 Random random = new Random();
+
+                catBox.put(
+                    state.loadedCat[index].name, state.loadedCat[index].phone);
                 return Container(
                   color: index % 2 == 0 ? Colors.white : Colors.cyan,
                   child: ListTile(
